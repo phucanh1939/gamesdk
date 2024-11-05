@@ -1,7 +1,6 @@
 #include "GdkCore.h"
-#include "Network.h"
 
-int fearth::GdkCore::test(int number)
+int fearth::GdkCore::initGdk()
 {
-    return fearth::Network::add(number, 2024);
+    return 1939;
 }

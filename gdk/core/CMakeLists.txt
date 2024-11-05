@@ -1,14 +1,15 @@
-cmake_minimum_required(VERSION 3.4.1)
+enable_language(C ASM)
 
-project(fearth_gdk)
+set(CMAKE_CXX_STANDARD 17)
 
-# Define your C++ source files
-file(GLOB CPP_SOURCES "src/*.cpp")
+list(APPEND GDK_CORE_SOURCES
+    ${CMAKE_CURRENT_LIST_DIR}/src/GdkCore.cpp
+)
 
-# Create a shared library (dynamic library)
-# This means that the compiled library code is stored in a separate file that can be loaded into memory at runtime,
-# rather than being statically linked into the executable.
-add_library(fearth_gdk_core SHARED ${CPP_SOURCES})
+list(APPEND GDK_CORE_HEADERS
+    ${CMAKE_CURRENT_LIST_DIR}/include/GdkCore.h
+)
 
-# Specify any required include directories
-include_directories(include)
+list(APPEND GDK_CORE_INCLUDE_DIRS
+    ${CMAKE_CURRENT_LIST_DIR}/include
+)

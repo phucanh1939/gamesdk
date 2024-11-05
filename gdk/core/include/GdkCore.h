@@ -6,7 +6,7 @@ namespace fearth
     class GdkCore
     {
     public:
-        static int test(int number);
+        static int initGdk();
     };
 }
 
