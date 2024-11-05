@@ -5,14 +5,10 @@
 @implementation FearthGdk
 
 // Implement the method to call the C++ test function
-- (NSInteger)initGdk {
++ (NSInteger)initialize {
     // Call the C++ function and return the result
     NSLog(@"[GDK] <init> ....");
-    return fearth::GdkCore::initGdk();
-}
-
-- (void)log:(NSString *)message {
-    NSLog(@"%@", message);
+    return fearth::GdkCore::initialize();
 }
 
 @end

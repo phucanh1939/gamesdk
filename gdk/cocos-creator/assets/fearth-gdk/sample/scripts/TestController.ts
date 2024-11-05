@@ -9,7 +9,11 @@ export class TestController extends Component {
     public text: Label = null!;
 
     protected start(): void {
-        this.text.string = FearthGdk.test(50).toString();
+        this.text.string = FearthGdk.initialize().toString();
+    }
+
+    public onPressed(): void{
+        FearthGdk.initialize()
     }
 }
 

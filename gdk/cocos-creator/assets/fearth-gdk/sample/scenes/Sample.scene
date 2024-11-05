@@ -20,7 +20,7 @@
         "__id__": 2
       },
       {
-        "__id__": 15
+        "__id__": 13
       }
     ],
     "_active": true,
@@ -55,7 +55,7 @@
     },
     "autoReleaseAssets": false,
     "_globals": {
-      "__id__": 17
+      "__id__": 18
     },
     "_id": "00f5308b-717d-4177-9745-15ec1e515717"
   },
@@ -78,13 +78,13 @@
     "_active": true,
     "_components": [
       {
-        "__id__": 12
+        "__id__": 15
       },
       {
-        "__id__": 13
+        "__id__": 16
       },
       {
-        "__id__": 14
+        "__id__": 17
       }
     ],
     "_prefab": null,
@@ -353,7 +353,7 @@
       "b": 0,
       "a": 255
     },
-    "_string": "Test!!!>>>",
+    "_string": "Test!!!___",
     "_horizontalAlign": 1,
     "_verticalAlign": 1,
     "_actualFontSize": 26,
@@ -466,7 +466,11 @@
     },
     "_enabled": true,
     "__prefab": null,
-    "clickEvents": [],
+    "clickEvents": [
+      {
+        "__id__": 12
+      }
+    ],
     "_interactable": true,
     "_transition": 2,
     "_normalColor": {
@@ -519,6 +523,76 @@
       "__id__": 5
     },
     "_id": "c8ErWdEqFECr9Zh93usBgc"
+  },
+  {
+    "__type__": "cc.ClickEvent",
+    "target": {
+      "__id__": 13
+    },
+    "component": "",
+    "_componentId": "5893cdEUedHvLKMTcKJ/drn",
+    "handler": "onPressed",
+    "customEventData": ""
+  },
+  {
+    "__type__": "cc.Node",
+    "_name": "TestController",
+    "_objFlags": 0,
+    "__editorExtras__": {},
+    "_parent": {
+      "__id__": 1
+    },
+    "_children": [],
+    "_active": true,
+    "_components": [
+      {
+        "__id__": 14
+      }
+    ],
+    "_prefab": null,
+    "_lpos": {
+      "__type__": "cc.Vec3",
+      "x": 0,
+      "y": 0,
+      "z": 0
+    },
+    "_lrot": {
+      "__type__": "cc.Quat",
+      "x": 0,
+      "y": 0,
+      "z": 0,
+      "w": 1
+    },
+    "_lscale": {
+      "__type__": "cc.Vec3",
+      "x": 1,
+      "y": 1,
+      "z": 1
+    },
+    "_mobility": 0,
+    "_layer": 1073741824,
+    "_euler": {
+      "__type__": "cc.Vec3",
+      "x": 0,
+      "y": 0,
+      "z": 0
+    },
+    "_id": "65g9ufOHhAtZGyqqq9SkLi"
+  },
+  {
+    "__type__": "5893cdEUedHvLKMTcKJ/drn",
+    "_name": "",
+    "_objFlags": 0,
+    "__editorExtras__": {},
+    "node": {
+      "__id__": 13
+    },
+    "_enabled": true,
+    "__prefab": null,
+    "text": {
+      "__id__": 8
+    },
+    "_id": "11QXTt6G1Jtr5hmpE5zdXL"
   },
   {
     "__type__": "cc.UITransform",
@@ -589,90 +663,30 @@
     "_id": "c5V1EV8IpMtrIvY1OE9t2u"
   },
   {
-    "__type__": "cc.Node",
-    "_name": "TestController",
-    "_objFlags": 0,
-    "__editorExtras__": {},
-    "_parent": {
-      "__id__": 1
-    },
-    "_children": [],
-    "_active": true,
-    "_components": [
-      {
-        "__id__": 16
-      }
-    ],
-    "_prefab": null,
-    "_lpos": {
-      "__type__": "cc.Vec3",
-      "x": 0,
-      "y": 0,
-      "z": 0
-    },
-    "_lrot": {
-      "__type__": "cc.Quat",
-      "x": 0,
-      "y": 0,
-      "z": 0,
-      "w": 1
-    },
-    "_lscale": {
-      "__type__": "cc.Vec3",
-      "x": 1,
-      "y": 1,
-      "z": 1
-    },
-    "_mobility": 0,
-    "_layer": 1073741824,
-    "_euler": {
-      "__type__": "cc.Vec3",
-      "x": 0,
-      "y": 0,
-      "z": 0
-    },
-    "_id": "65g9ufOHhAtZGyqqq9SkLi"
-  },
-  {
-    "__type__": "5893cdEUedHvLKMTcKJ/drn",
-    "_name": "",
-    "_objFlags": 0,
-    "__editorExtras__": {},
-    "node": {
-      "__id__": 15
-    },
-    "_enabled": true,
-    "__prefab": null,
-    "text": {
-      "__id__": 8
-    },
-    "_id": "11QXTt6G1Jtr5hmpE5zdXL"
-  },
-  {
     "__type__": "cc.SceneGlobals",
     "ambient": {
-      "__id__": 18
-    },
-    "shadows": {
       "__id__": 19
     },
-    "_skybox": {
+    "shadows": {
       "__id__": 20
     },
-    "fog": {
+    "_skybox": {
       "__id__": 21
     },
-    "octree": {
+    "fog": {
       "__id__": 22
     },
-    "skin": {
+    "octree": {
       "__id__": 23
     },
-    "lightProbeInfo": {
+    "skin": {
       "__id__": 24
     },
-    "postSettings": {
+    "lightProbeInfo": {
       "__id__": 25
+    },
+    "postSettings": {
+      "__id__": 26
     },
     "bakedWithStationaryMainLight": false,
     "bakedWithHighpLightmap": false

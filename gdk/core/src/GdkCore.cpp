@@ -1,6 +1,6 @@
 #include "GdkCore.h"
 
-int fearth::GdkCore::initGdk()
+int fearth::GdkCore::initialize()
 {
     return 1939;
 }

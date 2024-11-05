@@ -4,10 +4,10 @@ const { ccclass} = _decorator;
 @ccclass('FearthGdk')
 export class FearthGdk {
     
-    public static test(value: number): number {
-        var result = -1939;
-        if(sys.os == sys.OS.ANDROID && sys.isNative){
-            result = native.reflection.callStaticMethod("com/fearth/gdk/FearthGdk", "test", "(I)I", value);
+    public static initialize(): number {
+        var result = 12;
+        if(sys.os == sys.OS.IOS && sys.isNative){
+            result = native.reflection.callStaticMethod("FearthGdk", "initialize");
         }
         return result;
     }
