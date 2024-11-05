@@ -5,9 +5,14 @@
 @implementation FearthGdk
 
 // Implement the method to call the C++ test function
-- (NSInteger)test:(NSInteger)number {
+- (NSInteger)initGdk {
     // Call the C++ function and return the result
-    return fearth::GdkCore::test(static_cast<int>(number));
+    NSLog(@"[GDK] <init> ....");
+    return fearth::GdkCore::initGdk();
+}
+
+- (void)log:(NSString *)message {
+    NSLog(@"%@", message);
 }
 
 @end
