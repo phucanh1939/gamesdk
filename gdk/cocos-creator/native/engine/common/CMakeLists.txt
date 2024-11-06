@@ -52,6 +52,4 @@ include(${COCOS_X_PATH}/CMakeLists.txt)
 list(APPEND CC_COMMON_SOURCES
     ${CMAKE_CURRENT_LIST_DIR}/Classes/Game.h
     ${CMAKE_CURRENT_LIST_DIR}/Classes/Game.cpp
-    ${CMAKE_CURRENT_LIST_DIR}/Classes/FearthGdkWrapper.h
-    ${CMAKE_CURRENT_LIST_DIR}/Classes/FearthGdkWrapper.mm
 )

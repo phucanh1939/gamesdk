@@ -13,11 +13,17 @@ set(CC_COMMON_SOURCES)
 set(CC_ALL_SOURCES)
 
 include(${CC_PROJECT_DIR}/../common/CMakeLists.txt)
+
 set(EXECUTABLE_NAME ${APP_NAME}-mobile)
 
 cc_ios_before_target(${EXECUTABLE_NAME})
 add_executable(${EXECUTABLE_NAME} ${CC_ALL_SOURCES})
 cc_ios_after_target(${EXECUTABLE_NAME})
+
+target_sources(${EXECUTABLE_NAME} PRIVATE
+    ${CMAKE_CURRENT_LIST_DIR}/Classes/FearthGdkWrapper.h
+    ${CMAKE_CURRENT_LIST_DIR}/Classes/FearthGdkWrapper.mm
+)
 
 # Link the gdk framework to the application
 target_link_libraries(

@@ -1,4 +1,9 @@
 {
     "java.configuration.updateBuildConfiguration": "interactive",
-    "C_Cpp.errorSquiggles": "disabled"
+    "C_Cpp.errorSquiggles": "disabled",
+    "files.associations": {
+        "functional": "cpp",
+        "xstring": "cpp",
+        "xlocinfo": "cpp"
+    }
 }

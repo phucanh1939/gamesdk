@@ -5,7 +5,12 @@
 
 @interface FearthGdk : NSObject
 
-+ (NSInteger)initialize;
+// Singleton access method
++ (instancetype)sharedInstance;
+
+// Instance methods
+- (BOOL)initialize;
+- (void)login:(void (^)(BOOL success, NSString *message))callback;
 
 @end
 
