@@ -1,6 +1,7 @@
 import { _decorator, Component, Label } from 'cc';
 import { FearthGdk } from '../../scripts/FearthGdk';
 import { LoginData } from '../../scripts/data/LoginData';
+import { GdkConfig } from '../../scripts/data/GdkConfig';
 const { ccclass, property } = _decorator;
 
 @ccclass('TestController')
@@ -10,13 +11,17 @@ export class TestController extends Component {
     public text: Label = null!;
 
     protected start(): void {
-        FearthGdk.getInstance().initialize('{gameKey: "test"}');
+        const data: GdkConfig = {
+            gameKey: "game_xyz"
+        }
+        FearthGdk.getInstance().initialize(data);
     }
 
     public onPressed(): void{
-        var loginData = new LoginData();
-        loginData.signature = "fake_signature";
-        FearthGdk.getInstance().login(loginData, this.onLoginCompleted);
+        const data: LoginData = {
+            signature: "fake_signature"
+        }
+        FearthGdk.getInstance().login(data, this.onLoginCompleted.bind(this));
     }
 
     private onLoginCompleted(errorCode: number): void {

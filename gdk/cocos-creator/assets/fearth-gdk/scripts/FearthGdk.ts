@@ -1,14 +1,15 @@
-import { sys } from 'cc';
-import { FearthGdkDummy } from './impl/FearthGdkDummy';
-import { FearthGdkIOS } from './impl/FearthGdkIOS';
-import { LoginData } from './data/LoginData';
-import { GdkConfig } from './data/GdkConfig';
+import { _decorator, sys } from 'cc';
+import { FearthGdkDummy } from './interfaces/FearthGdkDummy';
+import { FearthGdkIOS } from './interfaces/FearthGdkIOS';
+import { FearthGdkInterface } from './interfaces/FearthGdkInterface';
+const { ccclass } = _decorator;
 
+@ccclass('FearthGdk')
 export abstract class FearthGdk {
 
-    private static instance: FearthGdk = null;
+    private static instance: FearthGdkInterface = null;
 
-    public static getInstance(): FearthGdk {
+    public static getInstance(): FearthGdkInterface {
         if (FearthGdk.instance == null) {
             if(sys.os == sys.OS.IOS && sys.isNative) {
                 FearthGdk.instance = new FearthGdkIOS();
@@ -18,9 +19,5 @@ export abstract class FearthGdk {
         }
         return FearthGdk.instance;
     }
-
-    public abstract initialize(data: GdkConfig): boolean;
-
-    public abstract login(data: LoginData, callback: (errorCode: number) => void): void;
 }
 

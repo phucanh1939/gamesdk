@@ -4,6 +4,7 @@
     "files.associations": {
         "functional": "cpp",
         "xstring": "cpp",
-        "xlocinfo": "cpp"
+        "xlocinfo": "cpp",
+        "iostream": "cpp"
     }
 }

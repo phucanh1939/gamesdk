@@ -21,8 +21,8 @@ add_executable(${EXECUTABLE_NAME} ${CC_ALL_SOURCES})
 cc_ios_after_target(${EXECUTABLE_NAME})
 
 target_sources(${EXECUTABLE_NAME} PRIVATE
-    ${CMAKE_CURRENT_LIST_DIR}/Classes/FearthGdkWrapper.h
-    ${CMAKE_CURRENT_LIST_DIR}/Classes/FearthGdkWrapper.mm
+    ${CMAKE_CURRENT_LIST_DIR}/FearthGdkWrapper.h
+    ${CMAKE_CURRENT_LIST_DIR}/FearthGdkWrapper.mm
 )
 
 # Link the gdk framework to the application

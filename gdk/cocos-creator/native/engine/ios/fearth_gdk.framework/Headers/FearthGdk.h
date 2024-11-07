@@ -1,13 +1,20 @@
 #ifndef FEARTH_GDK_H
 #define FEARTH_GDK_H
-// FearthGdk.h
+
 #import <Foundation/Foundation.h>
 
-// Declare the FearthGdk class
+#define ERROR_CODE_LOGIN_DATA_IS_NULL @1
+
+
 @interface FearthGdk : NSObject
 
-// Declare a method that calls the C++ function
-+ (NSInteger)initialize;
+// Singleton access method
++ (instancetype)sharedInstance;
+
+// Instance methods
+- (BOOL)initialize:(NSString*)data;
+- (void)login:(NSString*)data callback:(void (^)(NSNumber *errorCode))callback;
 
 @end
+
 #endif /* FEARTH_GDK_H */

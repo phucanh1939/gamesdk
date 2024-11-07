@@ -26,7 +26,7 @@ namespace fearth
         return true;
     }
 
-    void GdkCore::login(const std::string& data, std::function<int> callback)
+    void GdkCore::login(const std::string& data, std::function<void(int)> callback)
     {
         // TODO
         callback(0); 

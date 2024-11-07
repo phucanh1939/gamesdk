@@ -40,7 +40,7 @@
         ^(int errorCode) {
             NSNumber *errorCodeNumber = @(errorCode);
             if (callback) {
-                callback(errorCode);
+                callback(errorCodeNumber);
             }
         }
     );
