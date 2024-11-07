@@ -1,14 +1,12 @@
-import { _decorator, native, sys } from 'cc';
 import { FearthGdk } from '../FearthGdk';
-const { ccclass} = _decorator;
+import { LoginData } from '../data/LoginData';
 
-@ccclass('FearthGdk')
-export class FearthGdkDummy extends FearthGdk{
-    public login(callback: (errorCode: number) => void): void {
+export class FearthGdkDummy extends FearthGdk {
+    public login(data: LoginData, callback: (errorCode: number) => void): void {
         callback(0);
     }
 
-    public initialize(): boolean {
+    public initialize(data: string): boolean {
         return true;
     }
     

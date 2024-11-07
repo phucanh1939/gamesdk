@@ -1,6 +1,6 @@
 export class ErrorCode {
     // Success code
-    public static readonly SUCCESS: number = 0;
+    public static readonly NONE: number = 0;
     
     // Login
     public static readonly LOGIN_INVALID: number = 1;

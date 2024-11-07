@@ -1,9 +1,9 @@
-import { _decorator, sys } from 'cc';
-import { FearthGdkIOS } from './impl/FearthGdkIOS';
+import { sys } from 'cc';
 import { FearthGdkDummy } from './impl/FearthGdkDummy';
-const { ccclass} = _decorator;
+import { FearthGdkIOS } from './impl/FearthGdkIOS';
+import { LoginData } from './data/LoginData';
+import { GdkConfig } from './data/GdkConfig';
 
-@ccclass('FearthGdk')
 export abstract class FearthGdk {
 
     private static instance: FearthGdk = null;
@@ -19,7 +19,8 @@ export abstract class FearthGdk {
         return FearthGdk.instance;
     }
 
-    public abstract initialize(): boolean;
+    public abstract initialize(data: GdkConfig): boolean;
 
-    public abstract login(callback: (errorCode: number) => void): void;
+    public abstract login(data: LoginData, callback: (errorCode: number) => void): void;
 }
+

@@ -4,21 +4,17 @@
 
 @implementation FearthGdkWrapper
 
-+ (BOOL)initialize {
-    return [FearthGdk.sharedInstance initialize];
++ (BOOL)initialize:(NSString *)data {
+    return [FearthGdk.sharedInstance initialize:data];
 }
 
-+ (void)login {
-    [FearthGdk.sharedInstance login:^(BOOL success, NSString *data) {
++ (void)login:(NSString *)data {
+    [FearthGdk.sharedInstance login:data callback:^(NSNumber* errorCode) {
+        NSLog(@"[GdkWrapper] <login> errorCode: %@", errorCode);
         JsbBridgeWrapper* bridge = [JsbBridgeWrapper sharedInstance];
-        if (success) {
-            NSLog(@"[GdkWrapper] <login> successful: %@", data);
-            [bridge dispatchEventToScript:GDK_EVENT_LOGIN_SUCCESS arg:data]
-        } else {
-            NSLog(@"[GdkWrapper] <login> failed: %@", data);
-            [bridge dispatchEventToScript:GDK_EVENT_LOGIN_FAILED arg:data]
-        }
+        [bridge dispatchEventToScript:GDK_EVENT_LOGIN_COMPLETED arg:[errorCode stringValue]];
     }];
 }
 
 @end
+

@@ -1,15 +1,15 @@
 #ifndef FEARTH_GDK_WRAPPER_H
 #define FEARTH_GDK_WRAPPER_H
 
-#define GDK_EVENT_LOGIN_SUCCESS @"GDK_EVENT_LOGIN_SUCCESS"
-#define GDK_EVENT_LOGIN_FAILED  @"GDK_EVENT_LOGIN_FAILED"
+#define GDK_EVENT_LOGIN @"GDK_EVENT_LOGIN"
+#define GDK_EVENT_LOGIN_COMPLETED @"GDK_EVENT_LOGIN_COMPLETED"
 
 #import <Foundation/Foundation.h>
 
 @interface FearthGdkWrapper : NSObject
 
-+ (BOOL)initialize;
-+ (void)login;
++ (BOOL)initialize:(NSString *)data;
++ (void)login:(NSString *)data;
 
 @end
 

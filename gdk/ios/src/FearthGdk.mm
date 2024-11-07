@@ -3,25 +3,45 @@
 
 @implementation FearthGdk
 
+// Singleton instance method
 + (instancetype)sharedInstance {
     static FearthGdk *sharedInstance = nil;
-    if (!sharedInstance) {
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
         sharedInstance = [[self alloc] init];
-    }
+    });
     return sharedInstance;
 }
 
-- (BOOL)initialize {
-    NSLog(@"[GDK] <initialize>");
-    return fearth::GdkCore::getInstance().init() ? YES : NO;
+// Updated initialize method with NSString* parameter
+- (BOOL)initialize:(NSString *)data {
+    NSLog(@"[GDK] <initialize> with data: %@", data);
+    if (!data) {
+        NSLog(@"[GDK] <initialize> error: data is nil");
+        return NO;
+    }
+    std::string dataStdString = [data UTF8String];
+    return fearth::GdkCore::getInstance().initialize(dataStdString) ? YES : NO;
 }
 
-- (void)login {
-    NSLog(@"[GDK] <login>");
+// Updated login method with NSString* parameter and callback
+- (void)login:(NSString *)data callback:(void (^)(NSNumber *errorCode))callback {
+    NSLog(@"[GDK] <login> with data: %@", data);
+    if (!data) {
+        NSLog(@"[GDK] <login> error: data is nil");
+        if (callback) {
+            callback(ERROR_CODE_LOGIN_DATA_IS_NULL); // Pass error code and message
+        }
+        return;
+    }
+    std::string dataStdString = [data UTF8String];
     fearth::GdkCore::getInstance().login(
-        ^(bool success, std::string data) {
-            NSString *dataNSString = [NSString stringWithCString:data.c_str() encoding:NSUTF8StringEncoding];
-            callback(success, dataNSString);
+        dataStdString,
+        ^(int errorCode) {
+            NSNumber *errorCodeNumber = @(errorCode);
+            if (callback) {
+                callback(errorCode);
+            }
         }
     );
 }

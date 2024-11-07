@@ -18,7 +18,7 @@ namespace fearth
     {
     }
 
-    bool GdkCore::init()
+    bool GdkCore::initialize(const std::string& data)
     {
         if (initialized) return false;
         // TODO
@@ -26,11 +26,9 @@ namespace fearth
         return true;
     }
 
-    void GdkCore::login(std::function<void(bool, std::string)> callback)
+    void GdkCore::login(const std::string& data, std::function<int> callback)
     {
-        // Dummy data
-        bool success = true;
-        std::string json = R"({"id": 100, "name": "user_name_abc"})";
-        callback(success, json); 
+        // TODO
+        callback(0); 
     }
 }

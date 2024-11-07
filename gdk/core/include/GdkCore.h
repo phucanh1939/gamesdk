@@ -11,8 +11,8 @@ namespace fearth
     public:
         static GdkCore& getInstance();
 
-        bool init();
-        void login(std::function<void(bool, std::string)> callback);
+        bool initialize(const std::string& data);
+        void login(const std::string& data, std::function<void(int)> callback);
 
     private:
         GdkCore();
