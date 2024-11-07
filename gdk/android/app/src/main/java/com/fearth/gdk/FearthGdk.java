@@ -10,8 +10,22 @@ public class FearthGdk {
     public native boolean nativeInitialize(String data);
     public native void nativeLogin(String data);
 
+    // Singleton instance
+    private static FearthGdk instance;
+
     // Store the callback
     private LoginCallback loginCallback;
+
+    // Private constructor to prevent instantiation
+    private FearthGdk() {}
+
+    // Singleton getInstance method
+    public static synchronized FearthGdk getInstance() {
+        if (instance == null) {
+            instance = new FearthGdk();
+        }
+        return instance;
+    }
 
     // Initialize method
     public boolean initialize(String data) {

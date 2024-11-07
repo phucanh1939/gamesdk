@@ -15,11 +15,11 @@ set(GDK_ALL_HEADERS)
 set(GDK_ALL_INCLUDE_DIRS)
 
 # include core
-include(${CMAKE_CURRENT_LIST_DIR}/../core/CMakeLists.txt)
+include(${CMAKE_CURRENT_LIST_DIR}/../../core/CMakeLists.txt)
 
 # platform sources
 list(APPEND GDK_PLATFORM_SOURCES
-    ${CMAKE_CURRENT_LIST_DIR}/src/main/GdkCoreJni.cpp
+    ${CMAKE_CURRENT_LIST_DIR}/src/main/cpp/GdkCoreJni.cpp
 )
 
 # Form the source files and include

@@ -12,7 +12,7 @@ extern "C" {
         std::string strData(dataStr);
 
         // Call the C++ method
-        bool result = GdkCore::getInstance().initialize(strData);
+        bool result = fearth::GdkCore::getInstance().initialize(strData);
 
         // Release the jstring memory
         env->ReleaseStringUTFChars(data, dataStr);
@@ -30,7 +30,7 @@ extern "C" {
         std::string strData(dataStr);
 
         // Define a lambda function to handle the callback from C++ and call Java's onLoginCompleted method
-        GdkCore::getInstance().login(strData, [env, obj](int errorCode) {
+        fearth::GdkCore::getInstance().login(strData, [env, obj](int errorCode) {
             // Get the class of the Java object (FearthGdk)
             jclass clazz = env->GetObjectClass(obj);
 
