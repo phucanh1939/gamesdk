@@ -1,17 +1,25 @@
-import { _decorator, native, sys } from 'cc';
+import { _decorator, sys } from 'cc';
+import { FearthGdkIOS } from './impl/FearthGdkIOS';
+import { FearthGdkDummy } from './impl/FearthGdkDummy';
 const { ccclass} = _decorator;
 
 @ccclass('FearthGdk')
-export class FearthGdk {
-    
-    public static initialize(): number {
-        var result = 12;
-        if(sys.os == sys.OS.IOS && sys.isNative){
-            result = native.reflection.callStaticMethod("FearthGdk", "initialize");
+export abstract class FearthGdk {
+
+    private static instance: FearthGdk = null;
+
+    public static getInstance(): FearthGdk {
+        if (FearthGdk.instance == null) {
+            if(sys.os == sys.OS.IOS && sys.isNative) {
+                FearthGdk.instance = new FearthGdkIOS();
+            } else {
+                FearthGdk.instance = new FearthGdkDummy();
+            }
         }
-        return result;
+        return FearthGdk.instance;
     }
 
+    public abstract initialize(): boolean;
+
+    public abstract login(callback: (errorCode: number) => void): void;
 }
-
-

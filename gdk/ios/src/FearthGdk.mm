@@ -16,9 +16,14 @@
     return fearth::GdkCore::getInstance().init() ? YES : NO;
 }
 
-- (void)login:(void (^)(BOOL success, NSString *message))callback {
+- (void)login {
     NSLog(@"[GDK] <login>");
-    fearth::GdkCore::getInstance().login([callback copy]);
+    fearth::GdkCore::getInstance().login(
+        ^(bool success, std::string data) {
+            NSString *dataNSString = [NSString stringWithCString:data.c_str() encoding:NSUTF8StringEncoding];
+            callback(success, dataNSString);
+        }
+    );
 }
 
 @end
