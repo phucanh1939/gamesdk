@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GDK Example</title>
+</head>
+<body>
+    <h1>GDK Example</h1>
+
+    <button id="btnInit">Init</button>
+    <button id="btnLogin">Login</button>
+
+    <!-- Load gdk.js from localhost:9000 -->
+    <script src="http://localhost:9000/gdk.js"></script>
+    
+    <script>
+        // Ensure the script is loaded and the GDK is available
+        window.onload = function() {
+            Fearth.gdk.init(function(sucess){
+                console.log("Gdk init sucesss " + sucess);
+            });
+        };
+    </script>
+</body>
+</html>
