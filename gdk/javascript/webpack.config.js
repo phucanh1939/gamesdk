@@ -11,7 +11,7 @@ module.exports = (env, argv) => {
             // clean: true,  // Clean the output directory before each build
             library: {
                 type: "umd", // Universal Module Definition makes the bundle compatible with various module systems
-                name: "Fearth", // Sets the name of the global variable to access in non-module environments 
+                name: "fearth", // Sets the name of the global variable to access in non-module environments 
                 umdNamedDefine: true, // ensures that the UMD wrapper will use the name when loaded by AMD (e.g., RequireJS).
             },
         },
