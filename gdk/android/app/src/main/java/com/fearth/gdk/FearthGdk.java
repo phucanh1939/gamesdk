@@ -1,25 +1,28 @@
 package com.fearth.gdk;
 
 public class FearthGdk {
-
     static {
-        System.loadLibrary("fearth_gdk"); // Load the native library
+        System.loadLibrary("fearth_gdk");
     }
 
-    // Declare the native methods
+    public interface InitializeCallback {
+        void invoke(boolean success);
+    }
+
+    public interface LoginCallback {
+        void invoke(int errorCode);
+    }
+
+    private static FearthGdk instance;
+
+    private InitializeCallback initializeCallback;
+    private LoginCallback loginCallback;
+
     public native boolean nativeInitialize(String data);
     public native void nativeLogin(String data);
 
-    // Singleton instance
-    private static FearthGdk instance;
-
-    // Store the callback
-    private LoginCallback loginCallback;
-
-    // Private constructor to prevent instantiation
     private FearthGdk() {}
 
-    // Singleton getInstance method
     public static synchronized FearthGdk getInstance() {
         if (instance == null) {
             instance = new FearthGdk();
@@ -27,27 +30,29 @@ public class FearthGdk {
         return instance;
     }
 
-    // Initialize method
-    public boolean initialize(String data) {
-        return nativeInitialize(data);
+    public void initialize(String data, InitializeCallback callback) {
+        this.initializeCallback = callback;
+        nativeInitialize(data);
     }
 
-    // Login method with callback
     public void login(String data, LoginCallback callback) {
         this.loginCallback = callback;
         nativeLogin(data);
     }
 
-    // This method will be called from C++ to signal login completion
-    private void onLoginCompleted(int errorCode) {
+    private void onNativeLoginCompleted(int errorCode) {
         if (this.loginCallback != null) {
-            this.loginCallback.onLoginComplete(errorCode); // Call the callback
-            this.loginCallback = null; // Reset the callback after use
+            this.loginCallback.invoke(errorCode);
+            this.loginCallback = null;
         }
     }
 
-    // Nested interface for login callback
-    public interface LoginCallback {
-        void onLoginComplete(int errorCode);
+    private void onNativeInitializeCompleted(boolean success) {
+        if (this.initializeCallback != null) {
+            this.initializeCallback.invoke(success);
+            this.initializeCallback = null;
+        }
     }
+
+
 }

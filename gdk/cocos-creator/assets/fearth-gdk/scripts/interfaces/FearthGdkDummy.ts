@@ -10,8 +10,8 @@ export class FearthGdkDummy implements FearthGdkInterface {
         callback(0);
     }
 
-    public initialize(data: GdkConfig): boolean {
-        return true;
+    public initialize(data: GdkConfig, callback: (success: boolean) => void): void {
+        callback(true);
     }
     
 }

@@ -18,17 +18,19 @@ namespace fearth
     {
     }
 
-    bool GdkCore::initialize(const std::string& data)
+    void GdkCore::initialize(const std::string& data, std::function<void(bool)> callback)
     {
-        if (initialized) return false;
-        // TODO
+        if (initialized) {
+            if (callback) callback(false);
+            return;
+        }
         initialized = true;
-        return true;
+        if (callback) callback(true);
     }
 
     void GdkCore::login(const std::string& data, std::function<void(int)> callback)
     {
         // TODO
-        callback(0); 
+        if (callback) callback(0); 
     }
 }

@@ -6,13 +6,10 @@ import { FearthGdkInterface } from './FearthGdkInterface';
 import { ErrorCode } from '../defines/ErrorCode';
 const { ccclass } = _decorator;
 
-type LoginCallback = (errorCode: number) => void;
-
 @ccclass('FearthGdkWeb')
 export class FearthGdkWeb implements FearthGdkInterface {
     private static GDK_URL: string = "http://localhost:9000/gdk.js";
     private isLoaded: boolean = false;
-    private loginCallback: LoginCallback = null;
 
     private load(callback: (success: boolean) => void) {
         if (this.isLoaded) {
@@ -43,16 +40,4 @@ export class FearthGdkWeb implements FearthGdkInterface {
     public login(data: LoginData, callback: (errorCode: number) => void): void {
 
     }
-
-    private onLoginCallback(data: string): void {
-        var errorCode = Number(data);
-        if (isNaN(errorCode)) {
-            errorCode = -1939;
-        }
-        if (this.loginCallback != null) {
-            this.loginCallback(errorCode);
-            this.loginCallback = null;
-        }
-    }
-    
 }

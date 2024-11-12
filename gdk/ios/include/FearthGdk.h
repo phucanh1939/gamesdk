@@ -3,7 +3,7 @@
 
 #import <Foundation/Foundation.h>
 
-#define ERROR_CODE_LOGIN_DATA_IS_NULL @1
+#define ERROR_CODE_LOGIN_DATA_IS_NULL 1
 
 
 @interface FearthGdk : NSObject
@@ -12,7 +12,7 @@
 + (instancetype)sharedInstance;
 
 // Instance methods
-- (BOOL)initialize:(NSString*)data;
+- (void)initialize:(NSString*)data callback:(void (^)(BOOL success))callback;
 - (void)login:(NSString*)data callback:(void (^)(NSNumber *errorCode))callback;
 
 @end

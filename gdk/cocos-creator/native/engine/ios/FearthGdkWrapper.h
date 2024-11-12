@@ -8,7 +8,7 @@
 
 @interface FearthGdkWrapper : NSObject
 
-+ (BOOL)initialize:(NSString *)data;
++ (void)initialize:(NSString *)data;
 + (void)login:(NSString *)data;
 
 @end
