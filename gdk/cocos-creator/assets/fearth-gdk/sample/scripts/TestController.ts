@@ -1,7 +1,7 @@
-import { _decorator, Component, Label } from 'cc';
+import { _decorator, Component, Label, log } from 'cc';
 import { FearthGdk } from '../../scripts/FearthGdk';
-import { LoginData } from '../../scripts/data/LoginData';
-import { GdkConfig } from '../../scripts/data/GdkConfig';
+import { LoginRequest } from '../../scripts/data/LoginRequest';
+import { GdkConfigData } from '../../scripts/data/GdkConfigData';
 const { ccclass, property } = _decorator;
 
 @ccclass('TestController')
@@ -10,21 +10,25 @@ export class TestController extends Component {
     @property({type: Label})
     public text: Label = null!;
 
-    protected start(): void {
-        const data: GdkConfig = {
+    protected onInitPressed(): void {
+        const data: GdkConfigData = {
             gameKey: "game_xyz"
         }
-        FearthGdk.getInstance().initialize(data);
+        FearthGdk.getInstance().initialize(data, success => {
+            log(`[TestController] <init> finished!!! ${success}`);
+            this.text.string = "Init " + success;
+        });
     }
 
-    public onPressed(): void{
-        const data: LoginData = {
-            signature: "fake_signature"
+    public onLoginPressed(): void{
+        const data: LoginRequest = {
+            username: "user_abc",
+            password: "password_abc"
+
         }
-        FearthGdk.getInstance().login(data, this.onLoginCompleted.bind(this));
-    }
-
-    private onLoginCompleted(errorCode: number): void {
-        this.text.string = "err: " + errorCode.toString();
+        FearthGdk.getInstance().login(data, response => {
+            log(`[TestController] <login> finished!!! ${JSON.stringify(response)}`);
+            this.text.string = "Login Success!!!";
+        });
     }
 }

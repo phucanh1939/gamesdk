@@ -2,7 +2,7 @@ import { _decorator } from "cc";
 
 const { ccclass } = _decorator;
 
-@ccclass('GdkConfig')
-export class GdkConfig {
+@ccclass('GdkConfigData')
+export class GdkConfigData {
     public gameKey: string = null;
 }

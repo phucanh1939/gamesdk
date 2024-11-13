@@ -8,7 +8,7 @@ extern "C" {
     {
         const char* dataStr = env->GetStringUTFChars(data, nullptr);
         std::string strData(dataStr);
-        fearth::GdkCore::getInstance().initialize(strData, (bool success) {
+        fearth::GdkCore::getInstance().initialize(strData, [env, obj](bool success) {
             jclass clazz = env->GetObjectClass(obj);
             jmethodID methodID = env->GetMethodID(clazz, "onNativeInitializeCompleted", "(Z)V");
             if (methodID != nullptr) {

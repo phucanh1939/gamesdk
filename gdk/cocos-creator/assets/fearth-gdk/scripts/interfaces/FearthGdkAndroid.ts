@@ -1,9 +1,9 @@
 import { _decorator, native } from 'cc';
 import { Event } from '../defines/Event';
-import { LoginData } from '../data/LoginData';
-import { GdkConfig } from '../data/GdkConfig';
+import { LoginRequest } from '../data/LoginRequest';
+import { GdkConfigData } from '../data/GdkConfigData';
 import { FearthGdkInterface } from './FearthGdkInterface';
-import { ErrorCode } from '../defines/ErrorCode';
+import { LoginResponse } from '../data/LoginResponse';
 const { ccclass } = _decorator;
 
 @ccclass('FearthGdkAndroid')
@@ -15,9 +15,9 @@ export class FearthGdkAndroid implements FearthGdkInterface {
     private static readonly WRAPPER_LOGIN_SIGNATURE: string     = "(Ljava/lang/String;)V";
 
     private initializeCallback: (success: boolean) => void = null;
-    private loginCallback: (errorCode: number) => void = null;
+    private loginCallback: (response: LoginResponse) => void = null;
 
-    public initialize(data: GdkConfig, callback: (success: boolean) => void): void {
+    public initialize(data: GdkConfigData, callback: (success: boolean) => void): void {
         if (!data) {
             callback(false);
             return;
@@ -44,9 +44,9 @@ export class FearthGdkAndroid implements FearthGdkInterface {
         }
     }
 
-    public login(data: LoginData, callback: (errorCode: number) => void): void {
+    public login(data: LoginRequest, callback: (response: LoginResponse) => void): void {
         if (!data) {
-            callback(ErrorCode.INVALID_INPUT_DATA);
+            // callback(ErrorCode.INVALID_INPUT_DATA);
             return;
         }
         this.loginCallback = callback;
@@ -61,14 +61,13 @@ export class FearthGdkAndroid implements FearthGdkInterface {
 
     private onLoginCallback(data: string): void {
         native.jsbBridgeWrapper.removeAllListenersForEvent(Event.LOGIN_COMPLETED);
-        var errorCode = Number(data);
-        if (isNaN(errorCode)) {
-            errorCode = -1939;
-        }
-        if (this.loginCallback != null) {
-            this.loginCallback(errorCode);
-            this.loginCallback = null;
-        }
+
+        // TODO parse data to LoginResponse and callback
+
+        // if (this.loginCallback != null) {
+        //     this.loginCallback(errorCode);
+        //     this.loginCallback = null;
+        // }
     }
     
 }

@@ -1,16 +1,22 @@
 import { _decorator } from 'cc';
-import { LoginData } from '../data/LoginData';
-import { GdkConfig } from '../data/GdkConfig';
+import { LoginRequest } from '../data/LoginRequest';
+import { GdkConfigData } from '../data/GdkConfigData';
 import { FearthGdkInterface } from './FearthGdkInterface';
+import { LoginResponse } from '../data/LoginResponse';
 const { ccclass } = _decorator;
 
 @ccclass('FearthGdkDummy')
 export class FearthGdkDummy implements FearthGdkInterface {
-    public login(data: LoginData, callback: (errorCode: number) => void): void {
-        callback(0);
+    public login(data: LoginRequest, callback: (response: LoginResponse) => void): void {
+        callback({
+            success: true,
+            errorCode: 0,
+            userId: "user_xxx",
+            token: "token_xxx",
+        });
     }
 
-    public initialize(data: GdkConfig, callback: (success: boolean) => void): void {
+    public initialize(data: GdkConfigData, callback: (success: boolean) => void): void {
         callback(true);
     }
     
