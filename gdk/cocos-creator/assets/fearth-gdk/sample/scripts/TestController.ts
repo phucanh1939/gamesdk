@@ -28,7 +28,7 @@ export class TestController extends Component {
         }
         FearthGdk.getInstance().login(data, response => {
             log(`[TestController] <login> finished!!! ${JSON.stringify(response)}`);
-            this.text.string = "Login Success!!!";
+            this.text.string = "Login Success! token = " + response.token;
         });
     }
 }

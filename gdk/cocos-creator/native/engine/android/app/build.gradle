@@ -110,4 +110,7 @@ dependencies {
         implementation 'com.google.android.libraries.play.games:inputmapping:1.1.0-beta'
         implementation "org.jetbrains.kotlin:kotlin-stdlib:1.4.10"
     }
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.15.2'
+    implementation 'com.fasterxml.jackson.core:jackson-annotations:2.15.2'
+    implementation 'com.fasterxml.jackson.core:jackson-core:2.15.2'
 }

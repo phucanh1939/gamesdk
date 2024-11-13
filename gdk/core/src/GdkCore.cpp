@@ -10,27 +10,9 @@ namespace fearth
         return instance;
     }
 
-    GdkCore::GdkCore()
+    std::string GdkCore::generateToken(const std::string& username, const std::string& password)
     {
-    }
-
-    GdkCore::~GdkCore()
-    {
-    }
-
-    void GdkCore::initialize(const std::string& data, std::function<void(bool)> callback)
-    {
-        if (initialized) {
-            if (callback) callback(false);
-            return;
-        }
-        initialized = true;
-        if (callback) callback(true);
-    }
-
-    void GdkCore::login(const std::string& data, std::function<void(int)> callback)
-    {
-        // TODO
-        if (callback) callback(0); 
+        std::string token = secretKey + "token_" + username + "_" + password;
+        return token;
     }
 }

@@ -4,6 +4,7 @@ import { LoginRequest } from '../data/LoginRequest';
 import { GdkConfigData } from '../data/GdkConfigData';
 import { FearthGdkInterface } from './FearthGdkInterface';
 import { LoginResponse } from '../data/LoginResponse';
+import { ErrorCode } from '../defines/ErrorCode';
 const { ccclass } = _decorator;
 
 @ccclass('FearthGdkAndroid')
@@ -46,7 +47,7 @@ export class FearthGdkAndroid implements FearthGdkInterface {
 
     public login(data: LoginRequest, callback: (response: LoginResponse) => void): void {
         if (!data) {
-            // callback(ErrorCode.INVALID_INPUT_DATA);
+            callback(LoginResponse.error(ErrorCode.INVALID_INPUT_DATA));
             return;
         }
         this.loginCallback = callback;
@@ -61,13 +62,11 @@ export class FearthGdkAndroid implements FearthGdkInterface {
 
     private onLoginCallback(data: string): void {
         native.jsbBridgeWrapper.removeAllListenersForEvent(Event.LOGIN_COMPLETED);
-
-        // TODO parse data to LoginResponse and callback
-
-        // if (this.loginCallback != null) {
-        //     this.loginCallback(errorCode);
-        //     this.loginCallback = null;
-        // }
+        let response: LoginResponse = JSON.parse(data);
+        if (this.loginCallback != null) {
+            this.loginCallback(response);
+            this.loginCallback = null;
+        }
     }
     
 }

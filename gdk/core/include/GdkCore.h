@@ -9,19 +9,18 @@ namespace fearth
     class GdkCore
     {
     public:
-        static GdkCore& getInstance();
-
-        void initialize(const std::string& data, std::function<void(bool)> callback);
-        void login(const std::string& data, std::function<void(int)> callback);
-
-    private:
-        GdkCore();
-        ~GdkCore();
-
         GdkCore(const GdkCore&) = delete;
         GdkCore& operator=(const GdkCore&) = delete;
 
-        bool initialized = false;
+        static GdkCore& getInstance();
+
+        std::string generateToken(const std::string& username, const std::string& password);
+
+    private:
+        GdkCore() = default;
+        ~GdkCore() = default;
+
+        std::string secretKey = "__xxx__";
     };
 }
 

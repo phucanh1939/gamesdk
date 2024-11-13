@@ -24,6 +24,13 @@ android {
         }
     }
 
+    sourceSets.main {
+        java.srcDirs "src"
+        // res.srcDirs 'res'
+        // jniLibs.srcDirs 'libs'
+        manifest.srcFile "AndroidManifest.xml"
+    }
+
     buildTypes {
         release {
             minifyEnabled false
@@ -33,7 +40,7 @@ android {
 
     externalNativeBuild {
         cmake {
-            path "CMakeLists.txt" // Path to your CMakeLists.txt
+            path "CMakeLists.txt"
         }
     }
 
@@ -44,5 +51,7 @@ android {
 }
 
 dependencies {
-
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.15.2'
+    implementation 'com.fasterxml.jackson.core:jackson-annotations:2.15.2'
+    implementation 'com.fasterxml.jackson.core:jackson-core:2.15.2'
 }
